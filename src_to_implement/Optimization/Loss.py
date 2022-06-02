@@ -1,5 +1,6 @@
 import numpy as np
 
+
 class CrossEntropyLoss:
 
     def __init__(self):
@@ -15,11 +16,8 @@ class CrossEntropyLoss:
         self.temp_x = np.log(np.array(prediction_tensor) + self.eps)
         self.temp_y = np.array(label_tensor)
         self.output = np.where(self.temp_y == 1, -self.temp_x, 0).sum()
-        print('output', self.output)
         return self.output
 
     def backward(self, label_tensor):
         error_tensor = np.where(label_tensor==1,-1/self.d, 0)
-        print(error_tensor)
         return error_tensor
-
