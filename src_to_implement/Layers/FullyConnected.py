@@ -42,3 +42,4 @@ class FullyConnected(BaseLayer):
 
     def gradient_weights(self, val):
         self.__gradient_weights = val
+
