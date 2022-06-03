@@ -1,6 +1,7 @@
 import numpy as np
 from .Base import BaseLayer
 
+
 class ReLU(BaseLayer):
 
     def __init__(self):
@@ -18,3 +19,4 @@ class ReLU(BaseLayer):
         self.relu_gradient[self.relu_gradient > 0] = 1
         self.output = np.multiply(error_tensor, self.relu_gradient)
         return self.output
+
