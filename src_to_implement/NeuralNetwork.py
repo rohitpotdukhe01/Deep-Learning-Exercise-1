@@ -9,23 +9,21 @@ class NeuralNetwork():
         self.data_layer = None
         self.loss_layer = None
         self.next_input = None
-        self.previous_input = None
+        self.labels_input = None
         self.output = None
 
     def forward(self):
-        self.next_input, self.previous_input = self.data_layer.next()
+        self.next_input, self.labels_input = self.data_layer.next()
         input_copy = self.next_input.copy()
         for layer in self.layers:
             input_copy = layer.forward(input_copy)
-        self.output = self.loss_layer.forward(input_copy, self.previous_input)
+        self.output = self.loss_layer.forward(input_copy, self.labels_input)
         return self.output
 
     def backward(self):
-        loss_gradiant = self.loss_layer.backward(self.previous_input)
-
+        loss_gradiant = self.loss_layer.backward(self.labels_input)
         for layer in self.layers[::-1]:
             loss_gradiant = layer.backward(loss_gradiant)
-        # return loss_gradiant
 
     def append_layer(self, layer):
         if layer.trainable:
