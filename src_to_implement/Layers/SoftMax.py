@@ -1,5 +1,6 @@
 import numpy as np
 
+
 class SoftMax:
     def __init__(self):
         super().__init__()
@@ -14,7 +15,6 @@ class SoftMax:
         return self.output
 
     def backward(self, error_tensor):
-        self.output = self.softmax_gradient * (
-                    error_tensor - (error_tensor * self.softmax_gradient).sum(axis=1)[:, None])
+        self.output = self.softmax_gradient * (error_tensor - (error_tensor * self.softmax_gradient).sum(axis=1)[:, None])
         return self.output
 
